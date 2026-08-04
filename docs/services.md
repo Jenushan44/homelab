@@ -21,7 +21,7 @@ Ubuntu Server 24.04 LTS
 
 |        Service         |  Status   |
 |------------------------|-----------|
-| Docker                 | Planned   |
+| Docker                 | Active    |
 | Docker Compose         | Planned   |
 | PostgreSQL             | Planned   |
 | Nginx                  | Planned   |
@@ -44,3 +44,18 @@ Installed
 - Run containerized applications
 - Isolate application environments
 - Manage application networking
+
+## Nginx 
+
+### Purpose 
+
+Acts as the reverse proxy and entry point for applications hosted on `ubuntu-server-01`.
+
+### Status
+
+Active
+
+### Responsibilities
+
+- Recieve incoming HTTP/HTTPs requests
+- Route requests to the correct application
