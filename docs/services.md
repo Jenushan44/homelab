@@ -21,10 +21,10 @@ Ubuntu Server 24.04 LTS
 
 |        Service         |  Status   |
 |------------------------|-----------|
-| Docker                 | Active    |
-| Docker Compose         | Planned   |
-| PostgreSQL             | Planned   |
-| Nginx                  | Planned   |
+| Docker                 | Installed |
+| Docker Compose         | Installed |
+| PostgreSQL             | Active    |
+| Nginx                  | Active    |
 | Soul Eater API         | Planned   |
 | API Security Analyzer  | Planned   |
 | Portfolio              | Planned   |
@@ -59,3 +59,25 @@ Active
 
 - Recieve incoming HTTP/HTTPs requests
 - Route requests to the correct application
+
+## PostgreSQL
+
+### Purpose
+
+Provides persistent relational database storage for applications hosted on `ubuntu-server-01`.
+
+### Status
+
+Active
+
+### Responsibilities
+
+- Store application data
+- Manage relational databases
+- Persist data using Docker volumes
+
+### Configuration
+
+- Database: `soul_eater`
+- User: `admin`
+- Persistent Volume: `postgres_data`

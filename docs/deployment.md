@@ -53,3 +53,31 @@ sudo docker compose restart
 ```bash
 sudo docker compose down
 ```
+
+## PostgreSQL
+
+### Start Services
+
+```bash
+sudo docker compose up -d
+```
+
+### Connect to PostgreSQL
+
+```bash
+sudo docker exec -it postgres psql -U admin -d soul_eater
+```
+
+### Verify Persistence
+
+1. Create a table
+2. Insert data
+3. Run:
+
+```bash
+sudo docker compose down
+sudo docker compose up -d
+```
+
+4. Verify the data still exists
+```
