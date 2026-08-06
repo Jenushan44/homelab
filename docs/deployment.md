@@ -80,4 +80,29 @@ sudo docker compose up -d
 ```
 
 4. Verify the data still exists
+
+## Soul Eater API Backend
+
+### Build and Start
+
+```bash
+sudo docker compose up -d --build
+```
+
+### View Status
+
+```bash
+sudo docker compose ps
+```
+
+### View Logs
+
+```bash
+sudo docker compose logs soul_eater_api_backend
+```
+
+### Access Swagger UI
+
+```text
+http://<VM-IP>:8000/docs
 ```

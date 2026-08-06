@@ -81,3 +81,33 @@ Active
 - Database: `soul_eater`
 - User: `admin`
 - Persistent Volume: `postgres_data`
+
+## Soul Eater API Backend
+
+### Purpose
+
+Runs the FastAPI backend for the Soul Eater API.
+
+### Status
+
+In Progress
+
+### Configuration
+
+- Container: `soul_eater_api_backend`
+- Internal Port: `8000`
+- Host Port: `8000`
+- Database Service: `postgres`
+
+### Current Progress
+
+- Backend Dockerfile created
+- Docker image successfully built
+- Backend container deployed with Docker Compose
+- Swagger UI accessible from the local network
+
+### Remaining Work
+
+- Seed PostgreSQL with the existing API data
+- Update routes to query PostgreSQL
+- Verify database-backed endpoints
