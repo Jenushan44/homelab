@@ -57,6 +57,9 @@ organizations
 arcs
 ```
 
+![PostgreSQL tables](../../../images/deployments/soul-eater-api/database/postgres-tables.png)
+
+
 Each table stores the data that was stored in the Python data files. For example, the `characters` table contains fields such as:
 
 ```text
@@ -264,7 +267,11 @@ The PostgreSQL container runs the database software and the Docker volume stores
 
 ## Testing
 
-After setting up PostgreSQL, I tested the database separately before relying on it for the full application. I connected to PostgreSQL and checked that the tables had been created correctly and  I also checked the table structure to make sure that the expected columns and data types were there. After running the seeding script, I queried the tables to confirm that the Soul Eater data had been inserted. Then, I tested the API endpoints through FastAPI's Swagger UI.
+After setting up PostgreSQL, I tested the database separately before relying on it for the full application. I connected to PostgreSQL and checked that the tables had been created correctly and  I also checked the table structure to make sure that the expected columns and data types were there. After running the seeding script, I queried the tables to confirm that the Soul Eater data had been inserted. 
+
+![Seeded PostgreSQL data](../../../images/deployments/soul-eater-api/database/postgres-data.png)
+
+Then, I tested the API endpoints through FastAPI's Swagger UI.
 
 I tested endpoints such as to confirm that the API could get the data from PostgreSQL and return it correctly:
 
@@ -288,6 +295,8 @@ GET /arcs/{id}
 ## Persistence Test
 
 I also tested the Docker volume to make sure that the PostgreSQL data stayed available after the database container was recreated. This confirmed that the data was stored in the persistent Docker volume instead of depending on the life of the PostgreSQL container.
+
+![PostgreSQL persistence test](../../../images/deployments/soul-eater-api/database/postgres-persistence-test.png)
 
 ```text
                   psycopg2                           reads/writes

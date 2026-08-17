@@ -40,3 +40,9 @@ sudo docker compose up -d --build
 ```
 
 builds any of the required images and starts the containers. This makes it possible to manage the full application stack with one configuration file instead of starting and configuring every container separately.
+
+### Running Containers
+
+The final Docker Compose stack includes the Nginx, frontend, backend, and PostgreSQL containers running together.
+
+![Soul Eater Docker containers](../../../images/deployments/soul-eater-api/docker/docker-compose-services.png)

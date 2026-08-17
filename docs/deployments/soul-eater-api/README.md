@@ -54,3 +54,11 @@ The Soul Eater deployment uses:
 ## Deployment Environment
 
 The application is hosted on an Ubuntu Server virtual machine running inside Proxmox on my homelab server. The frontend, backend, PostgreSQL database and the Nginx reverse proxy all run as Docker containers on the Ubuntu VM.
+
+## Testing
+
+After deploying the application, I tested the FastAPI endpoints using Swagger UI to confirm that the backend was running correctly and could return the Soul Eater data.
+
+The frontend was also tested through the Nginx reverse proxy to confirm that the requests could reach the frontend and API through the same entry point.
+
+![Soul Eater API Swagger UI](../../../images/deployments/soul-eater-api/testing/soul-eater-api-swagger-ui.png)

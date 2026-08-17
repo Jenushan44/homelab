@@ -67,6 +67,8 @@ server {
 }
 ```
 
+![Nginx reverse proxy configuration](../../../images/deployments/soul-eater-api/nginx/nginx-config.png)
+
 Nginx listens on port `80` inside of its container. The Docker Compose configuration maps port `8080` on the Ubuntu Server VM to port `80` inside the Nginx container.
 
 ```text
@@ -230,6 +232,8 @@ http://<VM-IP>:8080
 ```
 
 The frontend loaded successfully and I was able to get the API data through the `/api/` route.
+
+![Soul Eater API running through Nginx](../../../images/deployments/soul-eater-api/nginx/soul-eater-api.png)
 
 This confirmed that the complete request flow was working:
 
