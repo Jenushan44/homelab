@@ -10,6 +10,8 @@ Nginx acts as the main entry point for the application, routes frontend requests
 
 ## Architecture
 
+![Soul Eater API deployment architecture](../../../images/deployments/soul-eater-api/architecture.png)
+
 The Soul Eater API is deployed using four Docker containers:
 
 - **Nginx container**: runs Nginx as a reverse proxy to send requests to the correct container.
