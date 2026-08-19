@@ -250,9 +250,33 @@ V1 includes:
 - automatic container restart policies
 - tested container recreation and data persistence
 
-## Future Improvements
+## V2 - Backup and Recovery
 
-Future versions of the deployment can add:
+Version 2 adds backups so that the Nextcloud data is not only protected by Docker volumes. I added a separate 1 TB HDD to the Proxmox server for backup storage. The HDD is mounted on Proxmox and added as a storage location called `backup-hdd`.
+
+Then, I added a 500 GiB virtual disk from this storage to the Ubuntu Server VM and mounted it at:
+
+```text
+/mnt/backups
+```
+
+The backup storage setup is:
+
+```text
+1 TB HDD
+   |
+   |---> Proxmox /mnt/backups
+             |
+             |---> backup-hdd
+                       |
+                       |---> 500 GiB Virtual Disk
+                                  |
+                                  |---> Ubuntu /mnt/backups
+```
+
+This storage will be used to keep backups of the PostgreSQL database and the Nextcloud files.
+
+## Future Improvements
 
 - backups and restore testing
 - HTTPS
