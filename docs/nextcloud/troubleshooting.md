@@ -147,3 +147,105 @@ Nextcloud Internal Server Error
                                                                                                                                             |
                                                                                                                                             |---> PostgreSQL and Nextcloud working
 ```
+
+## Backup Disk Failed to Mount Using UUID
+
+### Problem
+
+After adding the backup disk to Ubuntu, I added it to `/etc/fstab` using its UUID so that it would mount automatically.
+
+When I tested the configuration using:
+
+```bash
+sudo mount -a
+```
+
+I received an error saying:
+
+```text
+Can't lookup blockdev
+special device UUID=... does not exist
+```
+
+### Checking the Disk
+
+I first checked that the disk and its UUID existed:
+
+```bash
+sudo blkid /dev/sdb
+```
+
+The disk was still using ext4 and had the same UUID that I added to `/etc/fstab`.
+
+I also checked the UUID mapping using:
+
+```bash
+ls -l /dev/disk/by-uuid/
+```
+
+This showed that the UUID correctly pointed to:
+
+```text
+/dev/sdb
+```
+
+Then, I mounted the disk directly using:
+
+```bash
+sudo mount /dev/sdb /mnt/backups
+```
+
+This worked, which showed that the disk, filesystem and mount point were working and the problem was with how the disk was being found through `/etc/fstab`.
+
+### Fix
+
+Instead of using:
+
+```text
+UUID=<backup-disk-uuid>
+```
+
+I used the UUID device path:
+
+```text
+/dev/disk/by-uuid/<backup-disk-uuid>
+```
+
+in `/etc/fstab`.
+
+Then, I tested the configuration again using:
+
+```bash
+sudo umount /mnt/backups
+sudo systemctl daemon-reload
+sudo mount -a
+df -h /mnt/backups
+```
+
+The disk mounted successfully at `/mnt/backups`.
+
+### Result
+
+The backup disk can now be mounted automatically using the `/etc/fstab` configuration.
+
+The main troubleshooting process was:
+
+```text
+mount -a failed
+      |
+      |---> Check disk UUID
+                |
+                |---> UUID exists
+                          |
+                          |---> Check UUID mapping
+                                    |
+                                    |---> UUID points to /dev/sdb
+                                              |
+                                              |---> Test direct mount
+                                                        |
+                                                        |---> Disk mounts successfully
+                                                                  |
+                                                                  |---> Use /dev/disk/by-uuid/ path
+                                                                            |
+                                                                            |---> mount -a works
+```
