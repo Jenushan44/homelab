@@ -276,6 +276,50 @@ The backup storage setup is:
 
 This storage will be used to keep backups of the PostgreSQL database and the Nextcloud files.
 
+## Manual Backups
+
+After setting up the backup storage, I tested creating backups of both parts of the Nextcloud deployment.
+
+### PostgreSQL Backup
+
+I used `pg_dump` to create a backup of the PostgreSQL database.
+
+The backup was saved as:
+
+```text
+/mnt/backups/postgres/nextcloud.sql
+```
+
+`pg_dump` creates a logical backup of the database which includes the database state that Nextcloud needs such as users, file metadata, settings and other application information.
+
+### Nextcloud Data Backup
+
+I also backed up the `nextcloud_nextcloud_data` Docker volume. This volume has the Nextcloud files and data. First, I put Nextcloud into maintenance mode so that its data would not change while the backup was being created.
+
+Then, the volume was packaged into a compressed `.tar.gz` archive and saved as:
+
+```text
+/mnt/backups/nextcloud/nextcloud-data.tar.gz
+```
+
+After the backup finished, I turned maintenance mode back off.
+
+The backup setup now looks like:
+
+```text
+/mnt/backups/
+|
+|-- postgres/
+|     |
+|     |--> nextcloud.sql
+|
+|--> nextcloud/
+      |
+      |--> nextcloud-data.tar.gz
+```
+
+Both of the backups were checked to make sure that they were created and contained data. These are currently manual backups and they only have the data from the time they were created. The next step is to automate this process so that new backups can be created automatically.
+
 ## Future Improvements
 
 - backups and restore testing
